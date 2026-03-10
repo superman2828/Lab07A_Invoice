@@ -3,9 +3,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class AddressDialog extends JDialog {
-//    private JTextField customerNameTF, streetTF, cityTF, stateTF, zipCodeTF;
-//    private JButton saveButton;
-//    private Address address;
 
     private Invoice invoiceModel;
 
@@ -14,8 +11,8 @@ public class AddressDialog extends JDialog {
         setSize(300, 250);
         setLayout(null);
 
-        JLabel customerNameLabel = new JLabel("Customer Name:");
-        JTextField customerNameTF = new JTextField(20);
+        JLabel nameLabel = new JLabel("Name:");
+        JTextField nameTF = new JTextField(20);
         JLabel streetLabel = new JLabel("Street:");
         JTextField streetTF = new JTextField(20);
         JLabel cityLabel = new JLabel("City:");
@@ -24,11 +21,11 @@ public class AddressDialog extends JDialog {
         JTextField stateTF = new JTextField(20);
         JLabel zipCodeLabel = new JLabel("Zip Code:");
         JTextField zipCodeTF = new JTextField(20);
-        JButton saveButton = new JButton("Save");
+        JButton doneButton = new JButton("Done");
 
-        saveButton.addActionListener(e -> {
+        doneButton.addActionListener(e -> {
             inv.setAddress(new Address(
-                    customerNameTF.getText(),
+                    nameTF.getText(),
                     streetTF.getText(),
                     cityTF.getText(),
                     stateTF.getText(),
@@ -40,12 +37,12 @@ public class AddressDialog extends JDialog {
 
         this.invoiceModel = inv;
 
-        JPanel content = new JPanel();
+        JPanel content = new JPanel(new BorderLayout());
         content.setBorder(new EmptyBorder(5, 15, 5, 10));
 
         JPanel form = new JPanel(new GridLayout(5, 2, 10, 8));
-        form.add(customerNameLabel);
-        form.add(customerNameTF);
+        form.add(nameLabel);
+        form.add(nameTF);
         form.add(streetLabel);
         form.add(streetTF);
         form.add(cityLabel);
@@ -56,7 +53,11 @@ public class AddressDialog extends JDialog {
         form.add(zipCodeTF);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
-        buttonPanel.add(saveButton);
+        buttonPanel.add(doneButton);
+
+        content.add(form, BorderLayout.NORTH);
+        content.add(buttonPanel, BorderLayout.SOUTH);
+        setContentPane(content);
 
         setSize(600, 600);
         setLocationRelativeTo(null);

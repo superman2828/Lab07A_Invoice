@@ -8,36 +8,34 @@ public class LineItemTableDialog extends JDialog {
     private Invoice invoiceModel;
 
     public LineItemTableDialog(JFrame parent, Invoice inv) {
-        super(parent, "Add Line Items", true);
-        setSize(400, 300);
-        setLayout(new BorderLayout());
-
+        super(parent, "Bulk Item Entry", true);
+        setSize(400, 400);
         this.invoiceModel = inv;
 
         String[] headers = {"Product Name", "Price", "Quantity"};
         model = new DefaultTableModel(headers, 0);
         table = new JTable(model);
-        JScrollPane scrollPane = new JScrollPane(table);
-        add(scrollPane, BorderLayout.CENTER);
+        add(new JScrollPane(table), BorderLayout.CENTER);
 
         JPanel controlPanel = new JPanel();
         JButton rowButton = new JButton("Add Row");
         rowButton.addActionListener(e -> model.addRow(new Object[]{"", 0.0, 0}));
-        controlPanel.add(rowButton);
-        JButton removeButton = new JButton("Remove Row");
+        JButton removeButton = new JButton("Remove Selected");
         removeButton.addActionListener(e -> {
             int selectedRow = table.getSelectedRow();
             if (selectedRow != -1) {
                 model.removeRow(selectedRow);
             }
         });
+        controlPanel.add(rowButton);
         controlPanel.add(removeButton);
 
-        JButton saveButton = new JButton("Save");
+        JButton saveButton = new JButton("Commit all to Invoice");
         saveButton.addActionListener(e -> {
             commitTableToInvoice();
             dispose();
         });
+        add(controlPanel, BorderLayout.NORTH);
         add(saveButton, BorderLayout.SOUTH);
         setLocationRelativeTo(parent);
     }
@@ -53,8 +51,7 @@ public class LineItemTableDialog extends JDialog {
             int quantity = Integer.parseInt(model.getValueAt(i, 2).toString());
 
             if(!productName.isEmpty()) {
-                Product product = new Product(productName, price);
-                LineItem lineItem = new LineItem(product, quantity);
+                LineItem lineItem = new LineItem(new Product(productName, price), quantity);
                 invoiceModel.addItem(lineItem);
             }
         }
