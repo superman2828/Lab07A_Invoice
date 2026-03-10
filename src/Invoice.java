@@ -40,5 +40,4 @@ public class Invoice {
         return totalAmount;
     }
 
-
 }
