@@ -59,7 +59,7 @@ public class AddressDialog extends JDialog {
         content.add(buttonPanel, BorderLayout.SOUTH);
         setContentPane(content);
 
-        setSize(600, 600);
+        setSize(600, 300);
         setLocationRelativeTo(null);
         setVisible(true);
     }

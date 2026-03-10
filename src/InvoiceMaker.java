@@ -20,6 +20,7 @@ public class InvoiceMaker {
             JComponent root = (JComponent) frame.getContentPane();
             root.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
             displayTA = new JTextArea(20,20);
+            displayTA.setEditable(false);
             scrollPane = new JScrollPane(displayTA);
             frame.add(scrollPane, BorderLayout.CENTER);
             JButton addInvoiceButton = new JButton("Add Invoice");
