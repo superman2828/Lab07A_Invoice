@@ -43,4 +43,9 @@ public class Invoice {
     public void setAddress(Address address) {
         this.customerAddress = address;
     }
+
+    public void addItem(LineItem item) {
+        lineItems.add(item);
+        calculateTotalAmount();
+    }
 }
