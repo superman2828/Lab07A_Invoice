@@ -40,4 +40,7 @@ public class Invoice {
         return totalAmount;
     }
 
+    public void setAddress(Address address) {
+        this.customerAddress = address;
+    }
 }

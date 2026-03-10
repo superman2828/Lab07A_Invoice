@@ -9,7 +9,7 @@ public class InvoiceGeneratorFrame extends JFrame {
     JTextArea customerAddressTA;
     JTextArea itemsList;
     JTextField customerNameTF, streetTF, cityTF, stateTF, zipCodeTF;
-    JButton lineItemsButton, showInvoiceButton;
+    JButton addLineItems, showInvoiceButton;
 
 
 
@@ -25,8 +25,9 @@ public class InvoiceGeneratorFrame extends JFrame {
         titlePanel.add(titleLabel);
         add(titlePanel, BorderLayout.NORTH);
         createInputPanel();
-        lineItemsButton = new JButton("Add Line Items");
-        inputPanel.add(lineItemsButton);
+        addLineItems = new JButton("Add Line Items");
+        itemsList = new JTextArea();
+        inputPanel.add(addLineItems);
         showInvoiceButton = new JButton("Show Invoice");
         inputPanel.add(showInvoiceButton);
 
